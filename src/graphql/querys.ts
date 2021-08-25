@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
-export const GET_CHARACTERS = gql`
-    query getCharacters($page: Int!, $name: String!) {
-        characters(page: $page, filter: { name: $name }) {
+export const GET_CHARACTERS_BY_NAME = gql`
+    query getCharacters($page: Int!, $value: String!) {
+        characters(page: $page, filter: { name: $value }) {
             info {
                 count
                 pages
