@@ -83,9 +83,7 @@ export default defineComponent({
     );
 
     onMounted(() => {
-      if (storageUserData.value) {
-        variables.value.value = storageUserData.value;
-      }
+      router.push({ query: { page: "1" } });
     });
 
     return { result, loading, error };

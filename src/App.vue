@@ -38,7 +38,7 @@ export default defineComponent({
   name: "Home",
   components: { Characters, Logo },
   setup() {
-    const userInput = useDebouncedRef("", 500, false);
+    const userInput = useDebouncedRef("", 400, false);
     const route = useRoute();
 
     return { userInput, route };
