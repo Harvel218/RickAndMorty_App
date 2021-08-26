@@ -244,3 +244,18 @@ body {
         color: lightcoral;
     }
 }
+
+.message {
+    padding: 40px;
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid $blue;
+    width: calc(100% - 164px);
+    max-width: 800px;
+
+    span {
+        color: $blue;
+    }
+}

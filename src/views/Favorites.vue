@@ -27,8 +27,12 @@
     </div>
     <Loading v-else-if="loading" />
 
+    <div v-else-if="!result && error" class="message">
+      <span>Your list of favourite characters is empty</span>
+    </div>
+
     <div v-else-if="error" class="error">
-      <span>{{ error.message }}</span>
+      <span>Your list of favourite characters is empty</span>
     </div>
   </div>
 </template>
