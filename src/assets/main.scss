@@ -87,7 +87,7 @@ body {
         padding-bottom: 25px;
         position: relative;
 
-        @media (max-width: 767px) {
+        @media (max-width: 367px) {
             justify-content: space-between;
         }
 
@@ -100,7 +100,7 @@ body {
             text-decoration: none;
             font-weight: 550;
 
-            @media (max-width: 767px) {
+            @media (max-width: 367px) {
                 margin: 0;
             }
 
