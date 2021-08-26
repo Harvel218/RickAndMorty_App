@@ -27,36 +27,56 @@
     </div>
     <Loading v-else-if="loading" />
 
-    <div v-else-if="!result && error" class="message">
-      <span>Your list of favourite characters is empty</span>
-    </div>
-
-    <div v-else-if="error" class="error">
-      <span>Your list of favourite characters is empty</span>
+    <div v-else class="message">
+      <span>No results</span>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from "vue";
+import { defineComponent, ref, watch } from "vue";
 import { useQuery } from "@vue/apollo-composable";
 import { GET_CHARACTERS_BY_IDS } from "@/graphql/querys";
 import Character from "@/components/Character.vue";
 import Loading from "@/components/Loading.vue";
 
 export default defineComponent({
-  name: "Home",
+  name: "Favorites",
   components: { Character, Loading },
-  props: {},
-  setup() {
+  props: {
+    userInput: [String],
+  },
+  setup(props) {
+    const charactersIds = JSON.parse(
+      localStorage.getItem("favouriteCharacters")!
+    );
+
     const variables = ref({
-      ids: JSON.parse(localStorage.getItem("favouriteCharacters")!),
+      ids: charactersIds,
     });
 
     const { result, error, loading } = useQuery(
       GET_CHARACTERS_BY_IDS,
       variables
     );
+
+
+    const idFilter = (value: any) => {
+      if (charactersIds.includes(value.userInput)) {
+        variables.value.ids = value.userInput;
+      } else if (value.userInput === "") {
+        variables.value.ids = JSON.parse(
+          localStorage.getItem("favouriteCharacters")!
+        );
+      } else {
+        variables.value.ids = 0;
+      }
+    };
+
+    watch(props, (value) => {
+      console.log(value.userInput);
+      idFilter(value);
+    });
 
     return { result, error, loading };
   },

@@ -36,7 +36,7 @@
   </div>
 </template>
 <script lang="ts">
-import { ref, defineComponent, watch } from "vue";
+import { ref, defineComponent, watch, onMounted } from "vue";
 import { useQuery } from "@vue/apollo-composable";
 import { GET_CHARACTERS_BY_NAME } from "@/graphql/querys";
 import { useRoute, useRouter } from "vue-router";
@@ -53,6 +53,9 @@ export default defineComponent({
   setup(props) {
     const route = useRoute();
     const router = useRouter();
+    const storageUserData = ref<string>(
+      JSON.parse(localStorage.getItem("userData")!)
+    );
 
     const variables = ref({
       page: Number(route.query.page) || 1,
@@ -78,6 +81,12 @@ export default defineComponent({
         variables.value.page = Number(value);
       }
     );
+
+    onMounted(() => {
+      if (storageUserData.value) {
+        variables.value.value = storageUserData.value;
+      }
+    });
 
     return { result, loading, error };
   },

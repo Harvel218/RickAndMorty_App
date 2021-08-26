@@ -1,5 +1,5 @@
 <template>
-  <div class="page__header--logo">
+  <a href="/" class="page__header--logo">
     <svg
       width="240"
       height="70"
@@ -60,5 +60,5 @@
         fill="#11B0C8"
       />
     </svg>
-  </div>
+  </a>
 </template>
