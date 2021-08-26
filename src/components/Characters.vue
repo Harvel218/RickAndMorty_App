@@ -25,9 +25,9 @@
         :favPage="false"
       />
     </div>
-    
+
     <Loading v-else-if="loading" />
-    
+
     <div v-else-if="error" class="error">
       <span>{{ error.message }}</span>
     </div>

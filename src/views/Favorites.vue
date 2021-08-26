@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, watch } from "vue";
+import { ref, defineComponent } from "vue";
 import { useQuery } from "@vue/apollo-composable";
 import { GET_CHARACTERS_BY_IDS } from "@/graphql/querys";
 import Character from "@/components/Character.vue";
@@ -53,8 +53,6 @@ export default defineComponent({
       GET_CHARACTERS_BY_IDS,
       variables
     );
-
-    console.log(result);
 
     return { result, error, loading };
   },
