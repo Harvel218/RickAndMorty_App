@@ -157,6 +157,10 @@ export default defineComponent({
     const isFavourite = ref<boolean>(false);
 
     const checkIfInStore = () => {
+      if (!localStorage.getItem("favouriteCharacters")) {
+        localStorage.setItem("favouriteCharacters", JSON.stringify([]));
+      }
+
       JSON.parse(localStorage.getItem("favouriteCharacters")!).forEach(
         (item: number) => {
           if (item === props.charId) {
@@ -184,10 +188,6 @@ export default defineComponent({
     };
 
     const saveToStorage = (charId: number) => {
-      if (!localStorage.getItem("favouriteCharacters")) {
-        localStorage.setItem("favouriteCharacters", JSON.stringify([]));
-      }
-
       const favCharacters = JSON.parse(
         localStorage.getItem("favouriteCharacters")!
       );
