@@ -26,3 +26,19 @@ export const GET_CHARACTERS_BY_NAME = gql`
         }
     }
 `;
+
+export const GET_CHARACTERS_BY_IDS = gql`
+    query charactersByIds($ids: [ID!]!) {
+        charactersByIds(ids: $ids) {
+            id
+            name
+            status
+            species
+            gender
+            image
+            episode {
+                episode
+            }
+        }
+    }
+`;

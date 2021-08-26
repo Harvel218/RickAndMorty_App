@@ -1,20 +1,27 @@
 <template>
-  <div id="nav">
-    <input type="text" v-model="userInput" @keyup.enter="updateCharacter" />
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div class="page">
+    <header class="page__header container">
+      <Logo />
+      <label class="page__header--search"
+        ><span>Search by Name</span
+        ><input type="text" v-model="userInput" @keyup.enter="updateCharacter"
+      /></label>
+    </header>
+    <nav class="page__nav container">
+      <router-link to="/">All Characters</router-link>
+      <router-link to="/favorites">Favorites</router-link>
+    </nav>
+    <router-view :userInput="character" />
   </div>
-  <router-view :userInput="character" />
 </template>
 <script lang="ts">
-import { defineComponent, ref, watch } from "vue";
+import { defineComponent, ref } from "vue";
 import Characters from "@/components/Characters.vue";
-// import { useQuery, useLazyQuery, useResult } from "@vue/apollo-composable";
-// import gql from "graphql-tag";
+import Logo from "@/components/Logo.vue";
 
 export default defineComponent({
   name: "Home",
-  components: { Characters },
+  components: { Characters, Logo },
   setup() {
     const character = ref<string>("");
     const userInput = ref<string>("");
@@ -29,24 +36,5 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+@import "./assets/main.scss";
 </style>

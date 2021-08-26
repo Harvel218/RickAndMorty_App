@@ -1,6 +1,25 @@
 <template>
-  <div class="pagination">
-    <button type="button pagination__nav" @click="setPrevPage">prev</button>
+  <div class="pagination container">
+    <button
+      type="button pagination__nav"
+      :class="{
+        active: currentPage != 1,
+      }"
+      @click="setPrevPage"
+    >
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10.6667 3.33334V12.6667L3.33335 8L10.6667 3.33334Z"
+          fill="#A9B1BD"
+        />
+      </svg>
+    </button>
     <div class="pagination__elements">
       <button
         type="button"
@@ -16,7 +35,26 @@
         <span class="value" v-else>{{ value }}</span>
       </button>
     </div>
-    <button type="button pagination__nav" @click="setNextPage">next</button>
+    <button
+      type="button pagination__nav"
+      :class="{
+        active: currentPage != allPages,
+      }"
+      @click="setNextPage"
+    >
+      <svg
+        width="8"
+        height="10"
+        viewBox="0 0 8 10"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0.333344 0.333336V9.66667L7.66668 5L0.333344 0.333336Z"
+          fill="#A9B1BD"
+        />
+      </svg>
+    </button>
   </div>
 </template>
 <script lang="ts">
@@ -94,26 +132,11 @@ export default defineComponent({
       isPageDisabled,
       isPointerActive,
       currentPage,
+      allPages,
     };
   },
 });
 </script>
 
 <style lang="scss" scoped>
-button {
-  margin: 2px;
-}
-.disabled {
-  padding: 0;
-  border: 0;
-  display: none;
-
-  &.pointer {
-    color: blue;
-  }
-}
-
-.active {
-  background-color: blue;
-}
 </style>
