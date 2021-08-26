@@ -40,7 +40,6 @@ export default defineComponent({
   setup() {
     const userInput = useDebouncedRef("", 500, false);
     const route = useRoute();
-    console.log(route.name);
 
     return { userInput, route };
   },

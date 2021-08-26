@@ -74,7 +74,6 @@ export default defineComponent({
     };
 
     watch(props, (value) => {
-      console.log(value.userInput);
       idFilter(value);
     });
 
